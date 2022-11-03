@@ -31,6 +31,8 @@ Before you work on the code, create a table of test cases with at least 3 more t
 
 Validate all user input, and if the user enters an invalid value, prompt again for that input. Do not move past the input of that piece of data until it is valid. The year value ranges from 1900 to 2999. The month value ranges from 1 to 12. The day value ranges from 1 to 31 for some months, 1 to 30 for other months, and 1 to 28 for February.
 
+![o](https://github.com/bell-kevin/futureDate/blob/main/2050.PNG)
+
 In the previous project, you created a class for the day of the year. Add a function to that class that converts a month integer and day integer into the Julian value for that date. Modify existing functions as needed to display the year as well as the month and day. Be sure to validate that the day input by the user is valid for the month; if not, keep prompting the user for the day. When all the input is valid, echo the current date to the user, using the month name instead of the month integer. Ask for the number of days to add, and display that new date with the month name. You do not have to repeat this process as in the previous project.
 
 Take screenshots of executions of the project that include (1) an error in the number of days, (2) crossing through several months, and (3) crossing into another year.
