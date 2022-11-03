@@ -7,6 +7,7 @@ using namespace std;
 string convertMonthToMonthName(int month);
 int convertMonthDayYearToJulianNumber(int month, int day, int year);
 string convertJulianMonthToMonthName(int m3);
+
 string monthName, monthName2;
 int julianNumber;
 
