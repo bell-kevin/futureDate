@@ -1,21 +1,23 @@
-// futureDate.cpp : 
+// futureDate.cpp 
 //
 
 #include <iostream>
 using namespace std;
+
 //function prototypes
 string convertMonthToMonthName(int month);
 int convertMonthDayYearToJulianNumber(int month, int day, int year);
 string convertJulianMonthToMonthName(int m3);
 
+//global variables
 string monthName, monthName2;
 int julianNumber;
 
 int main()
 {
     cout << "Future Date by Kevin Bell\n\n";
-	cout << "This program calculates a future date using Julian number\n";
-	cout << "First enter the current date info:\n";
+	cout << "This program calculates a future date using Julian numbers\n";
+	cout << "First, enter the current date info:\n";
 	int month = 0, day = 0, year = 1899;
 	while (year < 1900 || year > 2999) { // loop to validate year
 		cout << "What is the current year? ";
@@ -66,24 +68,24 @@ int main()
 	julianNumber += daysIntoFuture;
 	
 	//convert julian number to month, day, year
-	int j = julianNumber + 32044;
-	int g = j / 146097;
-	int dg = j - g * 146097;
-	int c = (dg / 36524 + 1) * 3 / 4;
+	int j = julianNumber + 32044; // j is the Julian number plus 32044
+	int g = j / 146097; // number of 400-year periods since 1/1/4713 BC
+	int dg = j - g * 146097; // day of the 400-year period
+	int c = (dg / 36524 + 1) * 3 / 4; // number of 100-year periods in the 400-year period
 
-	int dc = dg - c * 36524;
-	int b = dc / 1461;
-	int db = dc - b * 1461;
-	int a2 = (db / 365 + 1) * 3 / 4;
+	int dc = dg - c * 36524; // day of the 100-year period
+	int b = dc / 1461; // number of 4-year periods in the 100-year period
+	int db = dc - b * 1461; // day of the 4-year period
+	int a2 = (db / 365 + 1) * 3 / 4; // number of years in the 4-year period
 
-	int da = db - a2 * 365;
-	int y2 = g * 400 + c * 100 + b * 4 + a2;
-	int m2 = (da * 5 + 308) / 153 - 2;
+	int da = db - a2 * 365; // day of the year
+	int y2 = g * 400 + c * 100 + b * 4 + a2; // year
+	int m2 = (da * 5 + 308) / 153 - 2; // month
 
-	int d = da - (m2 + 4) * 153 / 5 + 122;
-	int y3 = y2 - 4800 + (m2 + 2) / 12;
-	int m3 = (m2 + 2) % 12 + 1;
-	int d2 = d + 1;
+	int d = da - (m2 + 4) * 153 / 5 + 122; // day
+	int y3 = y2 - 4800 + (m2 + 2) / 12; // year
+	int m3 = (m2 + 2) % 12 + 1;  // month
+	int d2 = d + 1; // day
 	
 	//convert julian month to monthName
 	convertJulianMonthToMonthName(m3);
@@ -157,4 +159,4 @@ string convertJulianMonthToMonthName(int m3) {
 	else if (m3 == 12)
 		monthName2 = "December";
 	return monthName2;
-}
+} //end convertJulianMonthToMonthName function
