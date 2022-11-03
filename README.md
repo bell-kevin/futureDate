@@ -12,7 +12,6 @@ These are the skills you practiced in this module and will now demonstrate:
 
 -Using static variables
  
-
 Module 1 Competency Exercise: Future Date
 
 You wrote a project in this module to determine the date when given a Julian value. In this project, you will ask the user for the date, not in Julian but in integers, MM / DD / YYYY, and convert that date to its Julian value. Then ask the user how many days to go into the future. It's very simple to add an integer to a Julian value to get the Julian value of a future date. The project you've already written converts a Julian value to a date for printing.
