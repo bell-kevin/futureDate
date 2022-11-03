@@ -9,66 +9,36 @@ int main()
     cout << "Future Date by Kevin Bell\n\n";
 	cout << "This program calculates a future date using Julian number\n";
 	cout << "First enter the current date info:\n";
-	int month=1, day=1, year=1900;
-	//loop to validate year
-	while (year >= 1900 && year <= 2999) {
+	int month = 0, day = 0, year = 1899;
+	while (year < 1900 || year > 2999) { // loop to validate year
 		cout << "What is the current year? ";
 		cin >> year;
-		//loop to validate month
-		while (month >= 1 && month <= 12) {
-			cout << "What is the current month? ";
-			cin >> month;
-			//The day value ranges from 1 to 31 for some months, 1 to 30 for other months, and 1 to 28 for February
-			if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-				while (day >= 1 && day <= 31) {
-					cout << "What is the current day? ";
-					cin >> day;
-					while (day < 1 || day > 31) {
-						cout << "Invalid day. Please try again.\n";
-						cout << "What is the current day? ";
-						cin >> day;
-					}
-				}
-			}
-			else if (month == 4 || month == 6 || month == 9 || month == 11) {
-				while (day >= 1 && day <= 30) {
-					cout << "What is the current day? ";
-					cin >> day;
-					while (day < 1 || day > 30) {
-						cout << "Invalid day. Please try again.\n";
-						cout << "What is the current day? ";
-						cin >> day;
-						break;
-					}
-					break;
-				}
-			}
-			else if (month == 2) {
-				while (day >= 1 && day <= 28) {
-					cout << "What is the current day? ";
-					cin >> day;
-					while (day < 1 || day > 28) {
-						cout << "Invalid day. Please try again.\n";
-						cout << "What is the current day? ";
-						cin >> day;
-					}
-				}
-			}
-			while (month < 1 || month > 12) {
-				cout << "Invalid month. Please try again.\n";
-				cout << "What is the current month? ";
-				cin >> month;
-			}
-			break;
-		}
-		while (year < 1900 || year > 2999) {
-			cout << "Invalid year. Please try again.\n";
-			cout << "What is the current year? ";
-			cin >> year;
-		}
-		break;
-	}
-
+	} // end while loop to validate year
+	
+	while (month < 1 || month > 12) { //loop to validate month
+		cout << "What is the current month? ";
+		cin >> month;
+	} // end while loop to validate month
+	
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+		while (day < 1 || day > 31) {
+			cout << "What is the current day? ";
+			cin >> day;	
+		} // end while loop to validate day
+	} // end if statement for months with 31 days
+	else if (month == 4 || month == 6 || month == 9 || month == 11) {
+		while (day < 1 || day > 30) {
+			cout << "What is the current day? ";
+			cin >> day;
+		} // end while loop to validate day
+	} // end else if statement for months with 30 days
+	else if (month == 2) {
+		while (day < 1 && day > 28) {
+			cout << "What is the current day? ";
+			cin >> day;	
+		} // end while loop to validate day
+	} // end if statement to validate day
+	
 	//convert month to monthName
 	string monthName;
 	if (month == 1)
@@ -95,20 +65,77 @@ int main()
 		monthName = "November";
 	else if (month == 12)
 		monthName = "December";
-	
-	
-		cout << "The starting date is " << monthName << " " << day << ", " << year << endl;
+
+
+	cout << "The starting date is " << monthName << " " << day << ", " << year << endl;
+	cout << "How many days into the future? ";
+	int daysIntoFuture;
+	cin >> daysIntoFuture;
+	while (daysIntoFuture < 0) {
+		cout << "Invalid number of days. Please try again.\n";
 		cout << "How many days into the future? ";
-		int daysIntoFuture;
 		cin >> daysIntoFuture;
-		while (daysIntoFuture < 0) {
-			cout << "Invalid number of days. Please try again.\n";
-			cout << "How many days into the future? ";
-			cin >> daysIntoFuture;
-		}
-		// daysIntoFuture = 1; //for testing
-		cout << "That future date is " << month+1 << " " << day + daysIntoFuture << ", " << year << endl;
-		
-		system("pause");
-		return 0;
+	}
+
+	//convert month, day, year to Julian number
+	int a = (14 - month) / 12;
+	int y = year + 4800 - a;
+	int m = month + 12 * a - 3;
+	int julianNumber = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+
+	//add days into future to Julian number
+	julianNumber += daysIntoFuture;
+	
+	//convert julian number to month, day, year
+	int j = julianNumber + 32044;
+	int g = j / 146097;
+	int dg = j - g * 146097;
+	int c = (dg / 36524 + 1) * 3 / 4;
+
+	int dc = dg - c * 36524;
+	int b = dc / 1461;
+	int db = dc - b * 1461;
+	int a2 = (db / 365 + 1) * 3 / 4;
+
+	int da = db - a2 * 365;
+	int y2 = g * 400 + c * 100 + b * 4 + a2;
+	int m2 = (da * 5 + 308) / 153 - 2;
+
+	int d = da - (m2 + 4) * 153 / 5 + 122;
+	int y3 = y2 - 4800 + (m2 + 2) / 12;
+	int m3 = (m2 + 2) % 12 + 1;
+	int d2 = d + 1;
+	
+	//convert julian month to monthName
+	string monthName2;
+	if (m3 == 1)
+		monthName2 = "January";
+	else if (m3 == 2)
+		monthName2 = "February";
+	else if (m3 == 3)
+		monthName2 = "March";
+	else if (m3 == 4)
+		monthName2 = "April";
+	else if (m3 == 5)
+		monthName2 = "May";
+	else if (m3 == 6)
+		monthName2 = "June";
+	else if (m3 == 7)
+		monthName2 = "July";
+	else if (m3 == 8)
+		monthName2 = "August";
+	else if (m3 == 9)
+		monthName2 = "September";
+	else if (m3 == 10)
+		monthName2 = "October";
+	else if (m3 == 11)
+		monthName2 = "November";
+	else if (m3 == 12)
+		monthName2 = "December";
+
+	
+	cout << "That future date is " << monthName2 << " " << d2 << ", " << y3 << endl;
+	
+	system("pause");
+	return 0;
 } //end main function
