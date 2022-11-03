@@ -19,9 +19,9 @@ You wrote a project in this module to determine the date when given a Julian val
 
 Here are some examples of the output:
 
-M1 Competency     M1 Competency 2
+![M1 Competency](https://github.com/bell-kevin/futureDate/blob/main/future.PNG)     ![M1 Competency 2](https://github.com/bell-kevin/futureDate/blob/main/future0.PNG)
 
-M1 Competency 3
+![M1 Competency 3](https://github.com/bell-kevin/futureDate/blob/main/future00.PNG)
 
 Notice the data validation for the day of the month in the first example. There are only 30 days in the month of June, so the user was prompted to enter a valid number when entering 31, an invalid number. In the second example, the future date is in the next year. In the third example, the future date is more than a year into the future.
 
@@ -35,7 +35,7 @@ In the previous project, you created a class for the day of the year. Add a func
 
 Take screenshots of executions of the project that include (1) an error in the number of days, (2) crossing through several months, and (3) crossing into another year.
 
- 
+ ![p](https://github.com/bell-kevin/futureDate/blob/main/future000.PNG)
 
 NOTE: Remember the requirements for a header and a pause at the end of the program, discussed in the reading "Console Applications". These are required in every console application project.
 
