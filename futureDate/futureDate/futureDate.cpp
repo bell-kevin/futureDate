@@ -3,6 +3,12 @@
 
 #include <iostream>
 using namespace std;
+//function prototypes
+string convertMonthToMonthName(int month);
+int convertMonthDayYearToJulianNumber(int month, int day, int year);
+string convertJulianMonthToMonthName(int m3);
+string monthName, monthName2;
+int julianNumber;
 
 int main()
 {
@@ -40,32 +46,7 @@ int main()
 	} // end if statement to validate day
 	
 	//convert month to monthName
-	string monthName;
-	if (month == 1)
-		monthName = "January";
-	else if (month == 2)
-		monthName = "February";
-	else if (month == 3)
-		monthName = "March";
-	else if (month == 4)
-		monthName = "April";
-	else if (month == 5)
-		monthName = "May";
-	else if (month == 6)
-		monthName = "June";
-	else if (month == 7)
-		monthName = "July";
-	else if (month == 8)
-		monthName = "August";
-	else if (month == 9)
-		monthName = "September";
-	else if (month == 10)
-		monthName = "October";
-	else if (month == 11)
-		monthName = "November";
-	else if (month == 12)
-		monthName = "December";
-
+	convertMonthToMonthName(month);
 
 	cout << "The starting date is " << monthName << " " << day << ", " << year << endl;
 	cout << "How many days into the future? ";
@@ -78,10 +59,7 @@ int main()
 	}
 
 	//convert month, day, year to Julian number
-	int a = (14 - month) / 12;
-	int y = year + 4800 - a;
-	int m = month + 12 * a - 3;
-	int julianNumber = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+	convertMonthDayYearToJulianNumber(month, day, year);
 
 	//add days into future to Julian number
 	julianNumber += daysIntoFuture;
@@ -107,7 +85,52 @@ int main()
 	int d2 = d + 1;
 	
 	//convert julian month to monthName
-	string monthName2;
+	convertJulianMonthToMonthName(m3);
+
+	cout << "That future date is " << monthName2 << " " << d2 << ", " << y3 << endl;
+	
+	system("pause");
+	return 0;
+} //end main function
+
+//functions
+string convertMonthToMonthName(int month) {
+	if (month == 1)
+		monthName = "January";
+	else if (month == 2)
+		monthName = "February";
+	else if (month == 3)
+		monthName = "March";
+	else if (month == 4)
+		monthName = "April";
+	else if (month == 5)
+		monthName = "May";
+	else if (month == 6)
+		monthName = "June";
+	else if (month == 7)
+		monthName = "July";
+	else if (month == 8)
+		monthName = "August";
+	else if (month == 9)
+		monthName = "September";
+	else if (month == 10)
+		monthName = "October";
+	else if (month == 11)
+		monthName = "November";
+	else if (month == 12)
+		monthName = "December";
+	return monthName;
+} //end convertMonthToMonthName function
+
+int convertMonthDayYearToJulianNumber(int month, int day, int year) {
+	int a = (14 - month) / 12;
+	int y = year + 4800 - a;
+	int m = month + 12 * a - 3;
+	julianNumber = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+	return julianNumber;
+} //end convertMonthDayYearToJulianNumber function
+
+string convertJulianMonthToMonthName(int m3) {
 	if (m3 == 1)
 		monthName2 = "January";
 	else if (m3 == 2)
@@ -132,10 +155,5 @@ int main()
 		monthName2 = "November";
 	else if (m3 == 12)
 		monthName2 = "December";
-
-	
-	cout << "That future date is " << monthName2 << " " << d2 << ", " << y3 << endl;
-	
-	system("pause");
-	return 0;
-} //end main function
+	return monthName2;
+}
