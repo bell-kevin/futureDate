@@ -126,10 +126,10 @@ string convertMonthToMonthName(int month) {
 } //end convertMonthToMonthName function
 
 int convertMonthDayYearToJulianNumber(int month, int day, int year) {
-	int a = (14 - month) / 12;
-	int y = year + 4800 - a;
-	int m = month + 12 * a - 3;
-	julianNumber = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+	int a = (14 - month) / 12; // a is the number of years since 1/1/4713 BC
+	int y = year + 4800 - a; // y is the year
+	int m = month + 12 * a - 3; // m is the month
+	julianNumber = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045; 
 	return julianNumber;
 } //end convertMonthDayYearToJulianNumber function
 
