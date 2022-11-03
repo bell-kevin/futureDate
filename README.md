@@ -29,6 +29,8 @@ Assume that February always has 28 days, do not include anything for leap day or
 
 Before you work on the code, create a table of test cases with at least 3 more tests than those shown above. Make sure your project's results are correct by checking it against the table of test cases.
 
+![i](https://github.com/bell-kevin/futureDate/blob/main/3010.PNG)
+
 Validate all user input, and if the user enters an invalid value, prompt again for that input. Do not move past the input of that piece of data until it is valid. The year value ranges from 1900 to 2999. The month value ranges from 1 to 12. The day value ranges from 1 to 31 for some months, 1 to 30 for other months, and 1 to 28 for February.
 
 ![o](https://github.com/bell-kevin/futureDate/blob/main/2050.PNG)
